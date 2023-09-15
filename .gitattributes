@@ -1,0 +1,73 @@
+*.cs diff=csharp text
+*.cginc text
+*.shader text
+*.mat merge=unityyamlmerge eol=lf
+*.anim merge=unityyamlmerge eol=lf
+*.unity merge=unityyamlmerge eol=lf
+*.prefab merge=unityyamlmerge eol=lf
+*.physicsMaterial2D merge=unityyamlmerge eol=lf
+*.physicMaterial merge=unityyamlmerge eol=lf
+*.asset merge=unityyamlmerge eol=lf
+*.meta merge=unityyamlmerge eol=lf
+*.controller merge=unityyamlmerge eol=lf
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.ai filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.mjpeg filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.stl filter=lfs diff=lfs merge=lfs -text
+*.ssf filter=lfs diff=lfs merge=lfs -text
+*.glb filter=lfs diff=lfs merge=lfs -text
+*.a filter=lfs diff=lfs merge=lfs -text
+*.arr filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.gz filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.dylib filter=lfs diff=lfs merge=lfs -text
+*.so filter=lfs diff=lfs merge=lfs -text
+*.unitypackage filter=lfs diff=lfs merge=lfs -text
+*.aif filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text
+*.rns filter=lfs diff=lfs merge=lfs -text
+*.reason filter=lfs diff=lfs merge=lfs -text
+*.lxo filter=lfs diff=lfs merge=lfs -text
+*.dat filter=lfs diff=lfs merge=lfs -text
+*.tx filter=lfs diff=lfs merge=lfs -text
+*.appx filter=lfs diff=lfs merge=lfs -text
+*.appxbundle filter=lfs diff=lfs merge=lfs -text
+*.resS filter=lfs diff=lfs merge=lfs -text
+*.appxsym filter=lfs diff=lfs merge=lfs -text
+*.winmd filter=lfs diff=lfs merge=lfs -text
+Wikitude_Test/Assets/Plugins/** filter=lfs diff=lfs merge=lfs -text
+TestModels/** filter=lfs diff=lfs merge=lfs -text
+JaMeX_Unity_App/Assets/Resources/xmasmodel.txt filter=lfs diff=lfs merge=lfs -text
+HoloQR_Unity/Assets/StreamingAssetskobold filter=lfs diff=lfs merge=lfs -text
+UnityEditorMacOSBridge filter=lfs diff=lfs merge=lfs -text
+JaMeX_Unity_App/Assets/Resources/ios/** filter=lfs diff=lfs merge=lfs -text
+JaMeX_Unity_App/Assets/Resources/ios~/** filter=lfs diff=lfs merge=lfs -text
+JaMeX_Unity_App/Assets/Resources/import~/** filter=lfs diff=lfs merge=lfs -text
+JaMeX_Unity_App/Assets/Resources/android/** filter=lfs diff=lfs merge=lfs -text
+JaMeX_Unity_App/Assets/Resources/android~/** filter=lfs diff=lfs merge=lfs -text
+*.wtc filter=lfs diff=lfs merge=lfs -text
+*.pdn filter=lfs diff=lfs merge=lfs -text
+*.wto filter=lfs diff=lfs merge=lfs -text
+Assets/Models/HoloLens2_simplygon_LOD1/HoloLens2_simplygon_LOD1.fbx filter=lfs diff=lfs merge=lfs -text
+**/**.fbx filter=lfs diff=lfs merge=lfs -text
+**/*.obj filter=lfs diff=lfs merge=lfs -text
+**/*.png filter=lfs diff=lfs merge=lfs -text
+**/*.tga filter=lfs diff=lfs merge=lfs -text
+**/*.pdn filter=lfs diff=lfs merge=lfs -text
+**/*.dll filter=lfs diff=lfs merge=lfs -text
