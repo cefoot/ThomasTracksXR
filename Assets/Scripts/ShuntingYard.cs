@@ -21,6 +21,10 @@ public class ShuntingYard : MonoBehaviour
 
     private SocketIOClient.SocketIO _socket;
 
+    public string URL = "http://34.65.119.75:3000/";
+    //https://depot-hackzurich.iltis.rocks
+    //http://34.65.119.75:3000/
+
     System.Collections.Concurrent.ConcurrentQueue<DepoState> _depoStates = new System.Collections.Concurrent.ConcurrentQueue<DepoState>();
 
     // Start is called before the first frame update
@@ -29,9 +33,14 @@ public class ShuntingYard : MonoBehaviour
         StartCoroutine(Initialize());
     }
 
+    private void OnDestroy()
+    {
+        _socket.Dispose();
+    }
+
     private IEnumerator Initialize()
     {
-        yield return ParsePositions();
+        //yield return ParsePositions();
         yield return ConnectSocketIO();
     }
 
@@ -97,23 +106,32 @@ public class ShuntingYard : MonoBehaviour
 
     private IEnumerator ConnectSocketIO()
     {
-        _socket = new SocketIOClient.SocketIO("https://depot-hackzurich.iltis.rocks", new SocketIOOptions
+        var query = new Dictionary<string, string>();
+        query["startTime"] = "2023-07-11T01:47:25.263Z";
+        _socket = new SocketIOClient.SocketIO(URL, new SocketIOOptions
         {
-            Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
+            Transport = SocketIOClient.Transport.TransportProtocol.WebSocket,
+            Query = query
         });
 
         //_socket.On("depotStateUpdate", response =>//realtime
         //_socket.On("depotStateUpdateFast", response =>//10x faster 
-        _socket.On("depotStateUpdateVeryfast", response =>//100x faster
-        //_socket.On("depotStateUpdateStep", response =>//every .5 sec
+        //_socket.On("depotStateUpdateVeryfast", response =>//100x faster
+        _socket.On("depotStateUpdateStep", response =>//every .5 sec
         {
             Debug.Log(response);
             var val = response.GetValue<DepoState>();
             _depoStates.Enqueue(val);
 
         });
+        _socket.OnAny(AnyMessage);
         var task = _socket.ConnectAsync();
         yield return new WaitUntil(() => task.IsCompleted);
+    }
+
+    private void AnyMessage(string eventName, SocketIOResponse response)
+    {
+        Debug.Log(eventName);
     }
 
     private void Update()
