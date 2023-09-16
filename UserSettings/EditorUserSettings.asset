@@ -35,6 +35,9 @@ EditorUserSettings:
     RecentlyUsedSceneGuid-9:
       value: 500000055707505e5f0b5d7415260c4413164f79287e75697c784d36b6e16639
       flags: 0
+    glTF.saveFilePath:
+      value: 200b68110a4702481d0f0f272c17571f1b160b1e3e29253b3e112f0fc3f3273df6f40ac4e83e3a302a
+      flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
       flags: 0
