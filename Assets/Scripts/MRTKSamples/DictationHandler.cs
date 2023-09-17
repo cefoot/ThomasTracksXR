@@ -1,4 +1,4 @@
-// Copyright (c) Mixed Reality Toolkit Contributors
+﻿// Copyright (c) Mixed Reality Toolkit Contributors
 // Licensed under the BSD 3-Clause
 
 // Disable "missing XML comment" warning for samples. While nice to have, this XML documentation is not required for samples.
@@ -23,6 +23,7 @@ namespace MixedReality.Toolkit.Examples.Demos
         [System.Serializable]
         public class StringUnityEvent : UnityEvent<string> { }
 
+        public UnityEvent SpeechRecognitionStarted;
         /// <summary>
         /// Event raised while the user is talking. As the recognizer listens, it provides text of what it's heard so far.
         /// </summary>
@@ -42,6 +43,13 @@ namespace MixedReality.Toolkit.Examples.Demos
         public StringUnityEvent OnRecognitionFinished { get; private set; }
 
         /// <summary>
+        /// Event raised after the user pauses, typically at the end of a sentence. Contains the full recognized string so far.
+        /// </summary>
+        [field: SerializeField]
+        public StringUnityEvent OnRecognitionFinalized { get; private set; }
+
+
+        /// <summary>
         /// Event raised when an error occurs. Contains the string representation of the error reason.
         /// </summary>
         [field: SerializeField]
@@ -49,6 +57,8 @@ namespace MixedReality.Toolkit.Examples.Demos
 
         private IDictationSubsystem dictationSubsystem = null;
         private IKeywordRecognitionSubsystem keywordRecognitionSubsystem = null;
+
+        private string _lastRecognizedString = "Bitte reserviere eine Route von Z 11 nach S1 für mich.";
 
         /// <summary>
         /// Start dictation on a DictationSubsystem.
@@ -72,6 +82,7 @@ namespace MixedReality.Toolkit.Examples.Demos
                 dictationSubsystem.RecognitionFinished += DictationSubsystem_RecognitionFinished;
                 dictationSubsystem.RecognitionFaulted += DictationSubsystem_RecognitionFaulted;
                 dictationSubsystem.StartDictation();
+                SpeechRecognitionStarted?.Invoke();
             }
             else
             {
@@ -89,17 +100,20 @@ namespace MixedReality.Toolkit.Examples.Demos
         private void DictationSubsystem_RecognitionFinished(DictationSessionEventArgs obj)
         {
             OnRecognitionFinished.Invoke("Recognition finished. Reason: " + obj.ReasonString);
+            OnRecognitionFinalized?.Invoke(_lastRecognizedString);
             HandleDictationShutdown();
         }
 
         private void DictationSubsystem_Recognized(DictationResultEventArgs obj)
         {
             OnSpeechRecognized.Invoke("Recognized:" + obj.Result);
+            _lastRecognizedString = obj.Result;
         }
 
         private void DictationSubsystem_Recognizing(DictationResultEventArgs obj)
         {
             OnSpeechRecognizing.Invoke("Recognizing:" + obj.Result);
+            _lastRecognizedString = obj.Result;
         }
 
         /// <summary>

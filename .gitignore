@@ -51,3 +51,7 @@ crashlytics-build.properties
 
 # FME requirements (need to hide Visual Studio 'obj' directories from Unity by placing them in '.obj')
 .[Oo]bj/
+
+# Secrets
+Assets/Scripts/Secrets.cs
+*Secrets.cs

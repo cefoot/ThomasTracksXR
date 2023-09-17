@@ -119,19 +119,13 @@ public class ShuntingYard : MonoBehaviour
         _socket.On("depotStateUpdateVeryfast", response =>//100x faster
         //_socket.On("depotStateUpdateStep", response =>//every .5 sec
         {
-            Debug.Log(response);
+            //Debug.Log(response);
             var val = response.GetValue<DepoState>();
             _depoStates.Enqueue(val);
 
         });
-        _socket.OnAny(AnyMessage);
         var task = _socket.ConnectAsync();
         yield return new WaitUntil(() => task.IsCompleted);
-    }
-
-    private void AnyMessage(string eventName, SocketIOResponse response)
-    {
-        Debug.Log(eventName);
     }
 
     private void Update()

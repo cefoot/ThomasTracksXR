@@ -1,4 +1,4 @@
-// Copyright (c) Mixed Reality Toolkit Contributors
+﻿// Copyright (c) Mixed Reality Toolkit Contributors
 // Licensed under the BSD 3-Clause
 
 using MixedReality.Toolkit.Subsystems;
@@ -18,7 +18,7 @@ namespace MixedReality.Toolkit.Examples
     public class TextToSpeechHandler : MonoBehaviour
     {
         [SerializeField]
-        [Tooltip("The audio source where speech will be played.")] 
+        [Tooltip("The audio source where speech will be played.")]
         private AudioSource audioSource;
 
         /// <summary>
@@ -33,10 +33,10 @@ namespace MixedReality.Toolkit.Examples
         /// <summary>
         /// Gets or sets the voice that will be used to generate speech. To use a non en-US voice, set this to Other.
         /// </summary>
-        public TextToSpeechVoice Voice 
-        { 
-            get { return voice; } 
-            set { voice = value; } 
+        public TextToSpeechVoice Voice
+        {
+            get { return voice; }
+            set { voice = value; }
         }
 
         [Tooltip("The voice that will be used to generate speech. To use a non en-US voice, set this to Other.")]
@@ -59,10 +59,7 @@ namespace MixedReality.Toolkit.Examples
 
         private TextToSpeechSubsystem textToSpeechSubsystem;
 
-        /// <summary>
-        /// Method to demonstrate the text to speech capability
-        /// </summary>
-        public void Speak()
+        public void Say(string text)
         {
             // If we have a text to speech manager on the target object, say something.
             // This voice will appear to emanate from the object.
@@ -90,15 +87,19 @@ namespace MixedReality.Toolkit.Examples
                     WindowsTextToSpeechSubsystemConfig winConfig = config as WindowsTextToSpeechSubsystemConfig;
                     if (winConfig != null)
                     {
-                        winConfig.Voice = voice;
+                        winConfig.Voice = TextToSpeechVoice.Other;
+                        winConfig.VoiceName = "Karsten";
 
-                        // Create message
-                        var msg = string.Format(
+
+                        if (string.IsNullOrEmpty(text))
+                        {
+                            // Create message
+                            text = string.Format(
                             "This is the {0} voice. It should sound like it's coming from the object you clicked. Feel free to walk around and listen from different angles.",
-                            winConfig.Voice.ToString());
-
+                            winConfig.VoiceName.ToString());
+                        }
                         // Speak message
-                        textToSpeechSubsystem.TrySpeak(msg, audioSource);
+                        textToSpeechSubsystem.TrySpeak(text, audioSource);
                     }
                 }
             }
@@ -108,6 +109,14 @@ namespace MixedReality.Toolkit.Examples
                                "(Project Settings -> MRTK3) and/or ensure a TextToSpeechSubsystem is running.");
                 OnSpeakFaulted?.Invoke("Cannot find a running TextToSpeechSubsystem.");
             }
+        }
+
+        /// <summary>
+        /// Method to demonstrate the text to speech capability
+        /// </summary>
+        public void Speak()
+        {
+            Say(string.Empty);
         }
     }
 }
